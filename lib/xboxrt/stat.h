@@ -13,6 +13,8 @@ int stat(const char *filename, struct stat *st);
 #include <stdint.h>
 typedef uint32_t mode_t;
 
+int mkdir(const char *pathname, mode_t mode);
+
 #ifdef __cplusplus
 }
 #endif
