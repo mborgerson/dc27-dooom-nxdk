@@ -6,11 +6,11 @@
 	url = git://git.savannah.nongnu.org/lwip.git
 [submodule "lib/sdl/SDL2"]
 	path = lib/sdl/SDL2
-	url = https://github.com/XboxDev/nxdk-sdl.git
+	url = git@github.com:mborgerson/xbdoom-sdl2.git
 	branch = nxdk
 [submodule "lib/pdclib"]
 	path = lib/pdclib
-	url = https://github.com/XboxDev/nxdk-pdclib.git
+	url = git@github.com:mborgerson/xbdoom-pdclib.git
 	branch = nxdk
 [submodule "lib/sdl/SDL_ttf"]
 	path = lib/sdl/SDL_ttf
