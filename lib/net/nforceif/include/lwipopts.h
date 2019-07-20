@@ -440,4 +440,7 @@ extern unsigned char debug_flags;
 
 #define ETHARP_DEBUG LWIP_DBG_ON
 
+
+#define LWIP_SO_RCVTIMEO                1
+
 #endif /* LWIP_LWIPOPTS_H */
