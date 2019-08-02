@@ -521,6 +521,29 @@ MAX_RELEASE_CHECK_RATE   default: 4095 unless not HAVE_MMAP
   improvement at the expense of carrying around more memory.
 */
 
+#define XBOX 1
+
+#if XBOX
+#include <xboxkrnl/xboxkrnl.h>
+#include <winapi/memoryapi.h>
+#include <stdint.h>
+#include <string.h>
+
+enum {
+  ENOMEM = -1,
+  EINVAL = -2,
+};
+
+#define USE_LOCKS 0
+
+static int GetTickCount()
+{
+  return KeTickCount;
+}
+
+typedef unsigned ptrdiff_t;
+#endif
+
 /* Version identifier to allow people to support multiple versions */
 #ifndef DLMALLOC_VERSION
 #define DLMALLOC_VERSION 20806
@@ -541,8 +564,8 @@ MAX_RELEASE_CHECK_RATE   default: 4095 unless not HAVE_MMAP
 #endif  /* WIN32 */
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include <tchar.h>
+// #include <windows.h>
+// #include <tchar.h>
 #define HAVE_MMAP 1
 #define HAVE_MORECORE 0
 #define LACKS_UNISTD_H
@@ -1477,7 +1500,7 @@ DLMALLOC_EXPORT int mspace_mallopt(int, int);
 #endif /* linux */
 #endif /* LACKS_SYS_MMAN_H */
 #ifndef LACKS_FCNTL_H
-#include <fcntl.h>
+// #include <fcntl.h>
 #endif /* LACKS_FCNTL_H */
 #endif /* HAVE_MMAP */
 #ifndef LACKS_UNISTD_H
@@ -3111,11 +3134,16 @@ static int init_mparams(void) {
     gsize = ((DEFAULT_GRANULARITY != 0)? DEFAULT_GRANULARITY : psize);
 #else /* WIN32 */
     {
+#ifdef XBOX
+      psize = 4096;
+      gsize = psize;
+#else
       SYSTEM_INFO system_info;
       GetSystemInfo(&system_info);
       psize = system_info.dwPageSize;
       gsize = ((DEFAULT_GRANULARITY != 0)?
                DEFAULT_GRANULARITY : system_info.dwAllocationGranularity);
+#endif
     }
 #endif /* WIN32 */
 
