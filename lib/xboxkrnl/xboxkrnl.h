@@ -116,7 +116,7 @@ typedef ULONG LOGICAL;
 
 typedef unsigned char BYTE;
 typedef unsigned short WORD, WCHAR, *PWSTR;
-typedef unsigned int DWORD, *PDWORD, *LPDWORD;
+typedef unsigned long DWORD, *PDWORD, *LPDWORD;
 typedef const char *PCSZ, *PCSTR, *LPCSTR;
 typedef char *PSZ, *PSTR;
 typedef CONST WCHAR *LPCWSTR, *PCWSTR;
