@@ -45,7 +45,8 @@ CXBE         = $(NXDK_DIR)/tools/cxbe/cxbe
 VP20COMPILER = $(NXDK_DIR)/tools/vp20compiler/vp20compiler
 FP20COMPILER = $(NXDK_DIR)/tools/fp20compiler/fp20compiler
 EXTRACT_XISO = $(NXDK_DIR)/tools/extract-xiso/extract-xiso
-TOOLS        = cxbe vp20compiler fp20compiler extract-xiso
+XBE = $(NXDK_DIR)/tools/xbedump/xbe
+TOOLS        = cxbe vp20compiler fp20compiler extract-xiso xbe
 NXDK_CFLAGS  = -target i386-pc-win32 -march=pentium3 \
                -ffreestanding -nostdlib -fno-builtin -fno-exceptions \
                -I$(NXDK_DIR)/lib -I$(NXDK_DIR)/lib/xboxrt \
@@ -158,6 +159,11 @@ fp20compiler: $(FP20COMPILER)
 $(FP20COMPILER):
 	@echo "[ BUILD    ] $@"
 	$(VE)$(MAKE) -C $(NXDK_DIR)/tools/fp20compiler $(QUIET)
+
+xbe: $(XBE)
+$(XBE):
+	@echo "[ BUILD    ] $@"
+	$(VE)$(MAKE) -C $(NXDK_DIR)/tools/xbedump $(QUIET)
 
 extract-xiso: $(EXTRACT_XISO)
 $(EXTRACT_XISO):
