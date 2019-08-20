@@ -6,11 +6,11 @@
 	url = git://git.savannah.nongnu.org/lwip.git
 [submodule "lib/sdl/SDL2"]
 	path = lib/sdl/SDL2
-	url = git@github.com:mborgerson/dc27-dooom-sdl2.git
+	url = https://github.com/mborgerson/dc27-dooom-sdl2.git
 	branch = nxdk
 [submodule "lib/pdclib"]
 	path = lib/pdclib
-	url = git@github.com:mborgerson/dc27-dooom-pdclib.git
+	url = https://github.com/mborgerson/dc27-dooom-pdclib.git
 	branch = nxdk
 [submodule "lib/sdl/SDL_ttf"]
 	path = lib/sdl/SDL_ttf
